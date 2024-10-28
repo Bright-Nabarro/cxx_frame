@@ -1,12 +1,13 @@
 file(GLOB SRC "*.cpp")
 
-add_executable(${CMAKE_PROJECT_NAME} ${SRC})
+set(trg ${CMAKE_PROJECT_NAME})
+add_executable(${trg} ${SRC})
 
-ChgExeOutputDir(${CMAKE_PROJECT_NAME})
+ChgExeOutputDir(${trg})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
-	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/easylog>"
-    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/easylog>"
+	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${trg}>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${trg}>"
 )
 
 #include(Doxygen)
