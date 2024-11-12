@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 project(xx LANGUAGES CXX VERSION 0.0.1)
 
 option(DEBUG_MODE ON)
+option(ENABLE_TEST OFF)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -27,11 +28,13 @@ else()
 	)
 endif()
 
-enable_testing()
-include(Utils)
-
 add_subdirectory("src")
-add_subdirectory("test")
+
+if (ENABLE_TEST)
+	enable_testing()
+	include(Utils)
+	add_subdirectory("test")
+endif()
 
 add_custom_target(cp_compile_commands ALL
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
